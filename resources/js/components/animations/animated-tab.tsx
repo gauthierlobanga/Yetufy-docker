@@ -1,0 +1,59 @@
+'use client';
+
+import { motion, AnimatePresence } from 'motion/react';
+import React, { useState } from 'react';
+
+type AnimatedTab = {
+    name: string;
+    content: React.ReactNode | string;
+};
+
+export function AnimatedTab({ tabs }: { tabs: AnimatedTab[] }) {
+    const [selected, setSelected] = useState(0);
+    const duration = 0.3;
+
+    const handleSelect = (index: number) => {
+        setSelected(index);
+    };
+
+    return (
+        <div className="mx-auto w-full min-w-md px-10 py-5">
+            {/* Tab Buttons */}
+            <div className="relative mb-4 flex">
+                {tabs.map(({ name }, i) => (
+                    <motion.div
+                        key={i}
+                        className="relative cursor-pointer px-4 py-1"
+                        transition={{ duration }}
+                        onClick={() => handleSelect(i)}
+                    >
+                        <span className="relative z-10">{name}</span>
+                        {i === selected && (
+                            <motion.div
+                                className="absolute top-0 left-0 h-full w-full bg-transparent"
+                                layoutId="selected"
+                                transition={{ duration }}
+                            />
+                        )}
+                    </motion.div>
+                ))}
+            </div>
+
+            {/* Tab Content */}
+            <div className="relative h-56">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={selected}
+                        className="absolute inset-0 rounded-none bg-zinc-50 p-4 dark:bg-zinc-900"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        {tabs[selected].content}
+                    </motion.div>
+                </AnimatePresence>
+            </div>
+        </div>
+    );
+}

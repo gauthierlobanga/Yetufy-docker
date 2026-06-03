@@ -1,0 +1,9 @@
+grumphp:
+    hooks_dir: ~
+    hooks_preset: local
+    tasks:
+        laravel_pint:
+            config: pint.json
+            preset: laravel
+        phpstan:
+            level: 5

@@ -1,0 +1,20 @@
+{
+  "style": "default",
+  "path": "components/modern-ui",
+  "theme": "default",
+  "typescript": true,
+  "tailwind": true,
+  "framework": "vite",
+  "components": [
+    {
+      "name": "form",
+      "version": "latest",
+      "installedAt": "2026-04-16T14:53:12.391Z"
+    }
+  ],
+  "aliases": {
+    "cn": "@/lib/utils",
+    "hook": "@/hooks"
+  },
+  "tailwindVersion": "v4"
+}
