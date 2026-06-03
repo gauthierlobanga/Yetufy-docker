@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Events\NotificationDispatched;
-use App\Models\User;
 use App\Models\Tenant;
+use App\Models\User;
 use Illuminate\Notifications\Notification;
 
 class NotificationService
@@ -13,16 +13,22 @@ class NotificationService
      * Types de notifications
      */
     public const TYPE_VENDOR = 'vendor';      // Pour les vendeurs
+
     public const TYPE_CUSTOMER = 'customer';  // Pour les clients
+
     public const TYPE_SYSTEM = 'system';      // Système
 
     /**
      * Catégories de notifications
      */
     public const CATEGORY_ORDER = 'order';
+
     public const CATEGORY_PAYMENT = 'payment';
+
     public const CATEGORY_PRODUCT = 'product';
+
     public const CATEGORY_CUSTOMER = 'customer';
+
     public const CATEGORY_SYSTEM = 'system';
 
     /**
@@ -167,7 +173,7 @@ class NotificationService
     ): Notification {
         $class = "App\\Notifications\\{$notificationType}";
 
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             throw new \InvalidArgumentException(
                 "Notification class {$class} does not exist"
             );
@@ -202,7 +208,7 @@ class NotificationService
             return "tenant.{$notification->tenantId}";
         }
 
-        return "tenant.notifications";
+        return 'tenant.notifications';
     }
 
     /**
@@ -228,6 +234,7 @@ class NotificationService
 
         if ($notification && is_null($notification->read_at)) {
             $notification->markAsRead();
+
             return true;
         }
 

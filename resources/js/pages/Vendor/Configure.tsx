@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/immutability */
+/* eslint-disable react-hooks/set-state-in-effect */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // resources/js/Pages/Vendor/Configure.tsx
 import { Head, useForm, Link } from '@inertiajs/react';

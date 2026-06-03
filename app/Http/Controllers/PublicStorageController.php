@@ -19,7 +19,7 @@ class PublicStorageController extends Controller
 
         // Vérifier que le fichier existe sur le disque 'public'
         $disk = Storage::disk('public');
-        if (!$disk->exists($path)) {
+        if (! $disk->exists($path)) {
             abort(404, 'Fichier introuvable.');
         }
 
@@ -29,7 +29,7 @@ class PublicStorageController extends Controller
 
         // Vérifier que le fichier résolu est bien dans le répertoire attendu
         $storageReal = realpath(storage_path('app/public'));
-        if (!$realPath || !str_starts_with($realPath, $storageReal)) {
+        if (! $realPath || ! str_starts_with($realPath, $storageReal)) {
             abort(403, 'Accès non autorisé.');
         }
 

@@ -15,14 +15,17 @@ class Setting extends Model implements HasMedia
 
     protected $casts = [
         'payload' => 'array',
-        'locked'  => 'boolean',
+        'locked' => 'boolean',
     ];
 
     // Méthodes statiques get/set
     public static function getValue(string $group, string $name, $default = null)
     {
         $record = static::where('group', $group)->where('name', $name)->first();
-        if (!$record) return $default;
+        if (! $record) {
+            return $default;
+        }
+
         return $record->payload['value'] ?? $default;
     }
 

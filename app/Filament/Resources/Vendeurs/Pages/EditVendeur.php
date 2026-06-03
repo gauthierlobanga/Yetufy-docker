@@ -40,7 +40,7 @@ class EditVendeur extends EditRecord
     {
         $tenant->run(function () use ($tenant, $newPassword) {
             $userData = [
-                'name'  => $tenant->raison_sociale,
+                'name' => $tenant->raison_sociale,
                 'email' => $tenant->email,
             ];
 

@@ -15,7 +15,6 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Support\Icons\Heroicon;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -41,12 +40,11 @@ class AdminPanelProvider extends PanelProvider
 
                 return view('filament.admin.logo', compact('logoUrl', 'name'));
             })
+            // ->font('poppins')
             ->brandLogoHeight('4rem')
             ->favicon(Storage::url('images/favicon.ico'))
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->login()
-            ->sidebarCollapsibleOnDesktop()
-            ->sidebarWidth('16rem')
             ->colors([
                 'danger' => Color::Rose,
                 'gray' => Color::Slate,
@@ -85,8 +83,6 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 FilamentShieldPlugin::make()
                     ->navigationLabel('Bouclier')
-                    ->navigationIcon(Heroicon::OutlinedShieldCheck)
-                    ->activeNavigationIcon(Heroicon::ShieldCheck)
                     ->navigationSort(10)
                     ->navigationBadge()
                     ->globallySearchable(true)

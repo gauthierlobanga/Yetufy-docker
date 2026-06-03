@@ -47,121 +47,118 @@ class VendeurPanelProvider extends PanelProvider
                 return view('filament.admin.logo', compact('logoUrl', 'name'));
             })
             ->font('inter')
-            ->sidebarWidth('16rem')
             ->profile()
             ->navigationGroups(groups: [
-                            NavigationGroup::make()
-                                ->label('Market')
-                                ->icon(Heroicon::ShoppingBag),
-                            NavigationGroup::make()
-                                ->label('Blog')
-                                ->icon(Heroicon::Newspaper),
-                            NavigationGroup::make()
-                                ->label('Contact')
-                                ->icon(Heroicon::Inbox),
-                            NavigationGroup::make()
-                                ->label('About')
-                                ->icon(Heroicon::OutlinedInformationCircle),
-                            NavigationGroup::make()
-                                ->label('Help')
-                                ->icon(Heroicon::InformationCircle),
-                            NavigationGroup::make()
-                                ->label('Parametrises')
-                                ->icon(Heroicon::Cog8Tooth),
-                            NavigationGroup::make()
-                                ->label('Comptes')
-                                ->icon(Heroicon::UserGroup),
-                            NavigationGroup::make()
-                                ->label('Organisation')
-                                ->icon(Heroicon::BuildingOffice),
-                            NavigationGroup::make()
-                                ->label('Tenants')
-                                ->icon(Heroicon::BuildingOffice),
-                            NavigationGroup::make()
-                                ->label('Clients')
-                                ->icon(Heroicon::UserGroup),
-                            NavigationGroup::make()
-                                ->label('Fournisseurs')
-                                ->icon(Heroicon::Truck),
-                            NavigationGroup::make()
-                                ->label('Core')
-                                ->icon(Heroicon::Cog6Tooth),
-                            NavigationGroup::make()
-                                ->label('Filament Shield')
-                                ->icon(Heroicon::ShieldCheck),
-                            NavigationGroup::make()
-                                ->label('Notifications')
-                                ->icon(Heroicon::Bell),
-                        ])
+                NavigationGroup::make()
+                    ->label('Market')
+                    ->icon(Heroicon::ShoppingBag),
+                NavigationGroup::make()
+                    ->label('Blog')
+                    ->icon(Heroicon::Newspaper),
+                NavigationGroup::make()
+                    ->label('Contact')
+                    ->icon(Heroicon::Inbox),
+                NavigationGroup::make()
+                    ->label('About')
+                    ->icon(Heroicon::OutlinedInformationCircle),
+                NavigationGroup::make()
+                    ->label('Help')
+                    ->icon(Heroicon::InformationCircle),
+                NavigationGroup::make()
+                    ->label('Parametrises')
+                    ->icon(Heroicon::Cog8Tooth),
+                NavigationGroup::make()
+                    ->label('Comptes')
+                    ->icon(Heroicon::UserGroup),
+                NavigationGroup::make()
+                    ->label('Organisation')
+                    ->icon(Heroicon::BuildingOffice),
+                NavigationGroup::make()
+                    ->label('Tenants')
+                    ->icon(Heroicon::BuildingOffice),
+                NavigationGroup::make()
+                    ->label('Clients')
+                    ->icon(Heroicon::UserGroup),
+                NavigationGroup::make()
+                    ->label('Fournisseurs')
+                    ->icon(Heroicon::Truck),
+                NavigationGroup::make()
+                    ->label('Core')
+                    ->icon(Heroicon::Cog6Tooth),
+                NavigationGroup::make()
+                    ->label('Filament Shield')
+                    ->icon(Heroicon::ShieldCheck),
+                NavigationGroup::make()
+                    ->label('Notifications')
+                    ->icon(Heroicon::Bell),
+            ])
             ->sidebarCollapsibleOnDesktop()
             ->collapsedSidebarWidth('9rem')
             ->colors([
-                            'danger' => Color::Rose,
-                            'gray' => Color::Slate,
-                            'info' => Color::Blue,
-                            'primary' => Color::Emerald,
-                            'success' => Color::Emerald,
-                            'warning' => Color::Orange,
-                        ])
+                'danger' => Color::Rose,
+                'gray' => Color::Slate,
+                'info' => Color::Blue,
+                'primary' => Color::Emerald,
+                'success' => Color::Emerald,
+                'warning' => Color::Orange,
+            ])
             ->discoverResources(in: app_path('Filament/Vendeur/Resources'), for: 'App\\Filament\\Vendeur\\Resources')
             ->discoverPages(in: app_path('Filament/Vendeur/Pages'), for: 'App\\Filament\\Vendeur\\Pages')
             ->discoverWidgets(in: app_path('Filament/Vendeur/Widgets'), for: 'App\\Filament\\Vendeur\\Widgets')
             ->discoverClusters(in: app_path('Filament/Vendeur/Clusters'), for: 'App\\Filament\\Vendeur\\Clusters')
             ->pages([
-                            Dashboard::class,
-                        ])
+                Dashboard::class,
+            ])
             ->widgets([
-                            AccountWidget::class,
-                            FilamentInfoWidget::class,
-                        ])
+                AccountWidget::class,
+                FilamentInfoWidget::class,
+            ])
             ->middleware([
-                            EncryptCookies::class,
-                            AddQueuedCookiesToResponse::class,
-                            StartSession::class,
-                            AuthenticateSession::class,
-                            ShareErrorsFromSession::class,
-                            PreventRequestsDuringMaintenance::class,
-                            SubstituteBindings::class,
-                            DisableBladeIconComponents::class,
-                            DispatchServingFilamentEvent::class,
-                        ])
+                EncryptCookies::class,
+                AddQueuedCookiesToResponse::class,
+                StartSession::class,
+                AuthenticateSession::class,
+                ShareErrorsFromSession::class,
+                PreventRequestsDuringMaintenance::class,
+                SubstituteBindings::class,
+                DisableBladeIconComponents::class,
+                DispatchServingFilamentEvent::class,
+            ])
             ->middleware([
-                            'universal',
-                            EnsureTenantSubscription::class,
-                            InitializeTenancyByDomain::class,
-                            PreventAccessFromCentralDomains::class,
-                        ], isPersistent: true)
+                'universal',
+                EnsureTenantSubscription::class,
+                InitializeTenancyByDomain::class,
+                PreventAccessFromCentralDomains::class,
+            ], isPersistent: true)
             ->authMiddleware([
-                            Authenticate::class,
-                            EnsureUserIsVendeur::class,
-                        ])
+                Authenticate::class,
+                EnsureUserIsVendeur::class,
+            ])
             ->plugins(plugins: [
-                            FilamentShieldPlugin::make()
-                                ->navigationLabel('Bouclier')                  // string|Closure|null
-                                ->navigationIcon('heroicon-o-home')         // string|Closure|null
-                                ->activeNavigationIcon('heroicon-s-home')   // string|Closure|null
-                                ->navigationSort(10)                        // int|Closure|null
-                                ->navigationBadge()                      // string|Closure|null
-                                ->globallySearchable(true)                  // bool|Closure
-                                ->globalSearchResultsLimit(50)              // int|Closure
-                                ->navigationBadgeColor('success')           // string|Closure|null
-                                ->gridColumns([
-                                    'default' => 1,
-                                    'sm' => 2,
-                                    'lg' => 3,
-                                ])
-                                ->sectionColumnSpan(1)
-                                ->checkboxListColumns([
-                                    'default' => 1,
-                                    'sm' => 2,
-                                    'lg' => 4,
-                                ])
-                                ->resourceCheckboxListColumns([
-                                    'default' => 1,
-                                    'sm' => 2,
-                                ]),
+                FilamentShieldPlugin::make()
+                    ->navigationLabel('Bouclier')
+                    ->navigationSort(10)                        // int|Closure|null
+                    ->navigationBadge()                      // string|Closure|null
+                    ->globallySearchable(true)                  // bool|Closure
+                    ->globalSearchResultsLimit(50)              // int|Closure
+                    ->navigationBadgeColor('success')           // string|Closure|null
+                    ->gridColumns([
+                        'default' => 1,
+                        'sm' => 2,
+                        'lg' => 3,
+                    ])
+                    ->sectionColumnSpan(1)
+                    ->checkboxListColumns([
+                        'default' => 1,
+                        'sm' => 2,
+                        'lg' => 4,
+                    ])
+                    ->resourceCheckboxListColumns([
+                        'default' => 1,
+                        'sm' => 2,
+                    ]),
 
-                        ])
+            ])
             ->resourceEditPageRedirect('index')
             ->databaseNotifications()
             ->resourceCreatePageRedirect('index');

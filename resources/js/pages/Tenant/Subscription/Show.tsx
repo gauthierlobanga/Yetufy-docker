@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Head, Link, router } from '@inertiajs/react';
-import { useState } from 'react';
 import {
     CreditCard,
     Calendar,
@@ -15,6 +15,7 @@ import {
     ArrowUpRight,
     ArrowDownRight,
 } from 'lucide-react';
+import { useState } from 'react';
 
 interface Plan {
     id: string;
@@ -61,7 +62,10 @@ type Props = {
 };
 
 function formatDate(date: string | null): string {
-    if (!date) return '—';
+    if (!date) {
+return '—';
+}
+
     return new Date(date).toLocaleDateString('fr-FR', {
         year: 'numeric',
         month: 'long',
@@ -70,8 +74,12 @@ function formatDate(date: string | null): string {
 }
 
 function daysUntil(date: string | null): number | null {
-    if (!date) return null;
+    if (!date) {
+return null;
+}
+
     const diff = new Date(date).getTime() - new Date().getTime();
+
     return Math.ceil(diff / (1000 * 60 * 60 * 24));
 }
 
@@ -130,7 +138,7 @@ export default function SubscriptionShow({
                 {subscription.is_blocked && (
                     <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-800">
                         <div className="flex items-start gap-3">
-                            <XCircle className="mt-0.5 h-5 w-5 flex-shrink-0" />
+                            <XCircle className="mt-0.5 h-5 w-5 shrink-0" />
                             <div>
                                 <h3 className="font-semibold">
                                     Votre accès est bloqué
@@ -148,7 +156,7 @@ export default function SubscriptionShow({
                 {subscription.is_expired && !subscription.is_blocked && (
                     <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-800">
                         <div className="flex items-start gap-3">
-                            <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0" />
+                            <AlertCircle className="mt-0.5 h-5 w-5 shrink-0" />
                             <div>
                                 <h3 className="font-semibold">
                                     Abonnement expiré
@@ -170,7 +178,7 @@ export default function SubscriptionShow({
                 {subscription.is_active && graceDaysLeft && graceDaysLeft < 7 && (
                     <div className="rounded-lg border border-orange-200 bg-orange-50 p-4 text-orange-800">
                         <div className="flex items-start gap-3">
-                            <Clock className="mt-0.5 h-5 w-5 flex-shrink-0" />
+                            <Clock className="mt-0.5 h-5 w-5 shrink-0" />
                             <div>
                                 <h3 className="font-semibold">
                                     Abonnement expire bientôt
@@ -188,7 +196,7 @@ export default function SubscriptionShow({
                 {subscription.is_active && subscription.status === 'paused' && (
                     <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 text-blue-800">
                         <div className="flex items-start gap-3">
-                            <Pause className="mt-0.5 h-5 w-5 flex-shrink-0" />
+                            <Pause className="mt-0.5 h-5 w-5 shrink-0" />
                             <div>
                                 <h3 className="font-semibold">
                                     Abonnement en pause
@@ -205,7 +213,7 @@ export default function SubscriptionShow({
                 {subscription.is_active && !subscription.is_expired && (
                     <div className="rounded-lg border border-green-200 bg-green-50 p-4 text-green-800">
                         <div className="flex items-start gap-3">
-                            <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0" />
+                            <CheckCircle className="mt-0.5 h-5 w-5 shrink-0" />
                             <div>
                                 <h3 className="font-semibold">
                                     Abonnement actif

@@ -34,7 +34,7 @@ class SocialiteController extends Controller
 
             return $redirect;
         } catch (\Exception $e) {
-            Log::error("Socialite redirect error for {$provider}: " . $e->getMessage());
+            Log::error("Socialite redirect error for {$provider}: ".$e->getMessage());
 
             return redirect()->route('tenant.login')
                 ->with('error', 'Une erreur est survenue lors de la redirection. Veuillez réessayer.');
@@ -52,7 +52,7 @@ class SocialiteController extends Controller
         try {
             $socialUser = Socialite::driver($provider)->user();
         } catch (\Exception $e) {
-            Log::error("Socialite callback error for {$provider}: " . $e->getMessage());
+            Log::error("Socialite callback error for {$provider}: ".$e->getMessage());
 
             return redirect()->route('tenant.login')
                 ->with('error', 'Authentification échouée. Veuillez réessayer.');
@@ -65,7 +65,7 @@ class SocialiteController extends Controller
 
             return redirect()->intended(route('tenant.home', absolute: false));
         } catch (\Exception $e) {
-            Log::error("Error creating/updating user for {$provider}: " . $e->getMessage());
+            Log::error("Error creating/updating user for {$provider}: ".$e->getMessage());
 
             return redirect()->route('tenant.login')
                 ->with('error', 'Une erreur est survenue lors du traitement de votre compte. Veuillez contacter le support.');

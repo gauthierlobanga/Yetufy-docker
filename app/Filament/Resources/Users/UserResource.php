@@ -10,10 +10,8 @@ use App\Filament\Resources\Users\Schemas\UserForm;
 use App\Filament\Resources\Users\Tables\UsersTable;
 // use App\Filament\Resources\Users\Pages\ViewUser;
 use App\Models\User;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Auth;
 use UnitEnum;
@@ -21,8 +19,6 @@ use UnitEnum;
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
-
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::Users;
 
     protected static string|UnitEnum|null $navigationGroup = NavigationGroup::Profile;
 

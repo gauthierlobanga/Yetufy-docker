@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 use Nnjeim\World\Models\Country;
-use Nnjeim\World\World;
 
 class AddressController extends Controller
 {
@@ -25,11 +24,11 @@ class AddressController extends Controller
         $countryCode = $user->pays_preference;
 
         // 2. Détection par IP uniquement si non défini et IP routable
-        if (!$countryCode) {
+        if (! $countryCode) {
             $ip = $request->ip();
 
             // Ignorer les IP locales (développement, tests)
-            if (!in_array($ip, ['127.0.0.1', '::1', 'localhost'])) {
+            if (! in_array($ip, ['127.0.0.1', '::1', 'localhost'])) {
                 $cacheKey = "user_location_{$user->id}";
                 $countryCode = cache()->remember($cacheKey, now()->addHours(24), function () use ($ip) {
                     try {
@@ -55,8 +54,8 @@ class AddressController extends Controller
         $defaultPhoneCode = $country->phone_code ?? '+243';
 
         return Inertia::render('Shop/Addresses/Index', [
-            'addresses'       => $addresses,
-            'defaultCountry'  => $defaultCountry,
+            'addresses' => $addresses,
+            'defaultCountry' => $defaultCountry,
             'defaultPhoneCode' => $defaultPhoneCode,
         ]);
     }

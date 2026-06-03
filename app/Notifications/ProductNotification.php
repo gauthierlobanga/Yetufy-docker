@@ -35,7 +35,7 @@ class ProductNotification extends Notification
             ->subject($this->getMailSubject($action))
             ->greeting("Bonjour {$notifiable->name},")
             ->line($this->getMailLine($action, $product))
-            ->action('Voir le produit', route('products.show', $product?->id ?? '#'))
+            ->action('Voir le produit', route('tenant.product.show', $product?->id ?? '#'))
             ->line('Merci!');
     }
 
@@ -111,7 +111,7 @@ class ProductNotification extends Notification
             'updated' => "Le produit {$product?->name} a été mis à jour.",
             'published' => "Le produit {$product?->name} est maintenant publié.",
             'archived' => "Le produit {$product?->name} a été archivé.",
-            'low_stock' => "Stock faible pour {$product?->name}. Quantité: {$this->data['quantity'] ?? 0}",
+            'low_stock' => "Stock faible pour {$product?->name}. Quantité: {$this->data['quantity']}",
             'out_of_stock' => "Rupture de stock pour {$product?->name}.",
             default => "Mise à jour: {$product?->name}",
         };

@@ -6,7 +6,7 @@ export default function SubscriptionExpired() {
         <>
             <Head title="Abonnement expiré" />
 
-            <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-amber-50 to-amber-100 p-4">
+            <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-amber-50 to-amber-100 p-4">
                 <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg">
                     <div className="flex justify-center">
                         <div className="rounded-full bg-amber-100 p-3">
@@ -20,7 +20,7 @@ export default function SubscriptionExpired() {
 
                     <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-4">
                         <div className="flex gap-2">
-                            <AlertCircle className="h-5 w-5 flex-shrink-0 text-amber-600" />
+                            <AlertCircle className="h-5 w-5 shrink-0 text-amber-600" />
                             <div className="text-sm text-amber-800">
                                 <p className="font-semibold">
                                     Votre période de grâce est terminée

@@ -2,11 +2,10 @@
 
 namespace Tests\Unit\Services;
 
-use App\Models\User;
 use App\Services\SocialiteService;
-use PHPUnit\Framework\TestCase;
 use Laravel\Socialite\Contracts\User as SocialiteUser;
 use Mockery;
+use PHPUnit\Framework\TestCase;
 
 class SocialiteServiceTest extends TestCase
 {
@@ -15,7 +14,7 @@ class SocialiteServiceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->service = new SocialiteService();
+        $this->service = new SocialiteService;
     }
 
     public function test_find_or_create_user_creates_new_user()
@@ -41,7 +40,7 @@ class SocialiteServiceTest extends TestCase
         config()->set('socialite.providers.google', [
             'enabled' => true,
             'client_id' => 'test',
-            'client_secret' => 'test'
+            'client_secret' => 'test',
         ]);
         $this->assertTrue($this->service->isProviderEnabled('google'));
     }

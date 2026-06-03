@@ -123,6 +123,7 @@ class PaymentController extends Controller
 
                 // Rediriger vers le dashboard du tenant
                 $dashboardUrl = $this->vendorService->getVendeurDashboardUrl($tenant);
+
                 return redirect($dashboardUrl);
             }
 

@@ -22,7 +22,6 @@ class TaxeResource extends Resource
 {
     protected static ?string $model = Taxe::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static string|UnitEnum|null $navigationGroup = NavigationGroup::Settings;
 

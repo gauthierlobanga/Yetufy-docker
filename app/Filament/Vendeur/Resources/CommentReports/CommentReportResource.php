@@ -20,7 +20,6 @@ class CommentReportResource extends Resource
 {
     protected static ?string $model = CommentReport::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'status';
 

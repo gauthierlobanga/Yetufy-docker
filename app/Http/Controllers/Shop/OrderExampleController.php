@@ -7,6 +7,10 @@ use App\Events\OrderStatusChanged;
 use App\Events\PaymentReceived;
 use App\Http\Controllers\Controller;
 use App\Models\Commande;
+use App\Models\Tenant;
+use App\Models\User;
+use App\Notifications\CustomerNotification;
+use App\Notifications\OrderNotification;
 use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -120,12 +124,12 @@ class OrderExampleController extends Controller
             'message' => 'required|string',
         ]);
 
-        $user = \App\Models\User::findOrFail($request->input('user_id'));
+        $user = User::findOrFail($request->input('user_id'));
 
         // Envoyer une notification personnalisée
         $notificationService->notifyCustomer(
             customer: $user,
-            notificationType: \App\Notifications\CustomerNotification::class,
+            notificationType: CustomerNotification::class,
             data: [
                 'title' => $request->input('title'),
                 'message' => $request->input('message'),
@@ -148,12 +152,12 @@ class OrderExampleController extends Controller
         ]);
 
         // Récupérer tous les tenants
-        $tenants = \App\Models\Tenant::all();
+        $tenants = Tenant::all();
 
         foreach ($tenants as $tenant) {
             $notificationService->notifyTenantUsers(
                 tenant: $tenant,
-                notificationType: \App\Notifications\OrderNotification::class,
+                notificationType: OrderNotification::class,
                 data: [
                     'title' => $request->input('title'),
                     'message' => $request->input('message'),
@@ -171,7 +175,7 @@ class OrderExampleController extends Controller
     public function notifyAdmins(Request $request, NotificationService $notificationService)
     {
         $notificationService->notifyAdmins(
-            notificationType: \App\Notifications\OrderNotification::class,
+            notificationType: OrderNotification::class,
             data: [
                 'title' => 'Alerte système',
                 'message' => $request->input('message'),

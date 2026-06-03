@@ -654,7 +654,7 @@ export default function SaaSLanding({ plans, stats, testimonials }: Props) {
                         </div>
                         {/* <div className="rounded-3xl border border-white/40 bg-white/40 p-6 shadow-xl shadow-slate-200/30 backdrop-blur-xl dark:border-slate-700/30 dark:bg-slate-800/30 dark:shadow-slate-900/30"> */}
                             {/* <img
-                                src="/storage/images/shopping-basket.jpg"
+                                src="/storage/images/shopping-cart.jpg"
                                 alt="Shopping"
                                 className="w-full rounded-2xl object-cover shadow-md"
 

@@ -9,18 +9,14 @@ use App\Filament\Vendeur\Resources\CommentLikes\Pages\ListCommentLikes;
 use App\Filament\Vendeur\Resources\CommentLikes\Schemas\CommentLikeForm;
 use App\Filament\Vendeur\Resources\CommentLikes\Tables\CommentLikesTable;
 use App\Models\CommentLike;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
 
 class CommentLikeResource extends Resource
 {
     protected static ?string $model = CommentLike::class;
-
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'type';
 

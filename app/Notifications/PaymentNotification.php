@@ -16,6 +16,7 @@ class PaymentNotification extends Notification
     use Queueable;
 
     public ?string $userType = null;
+
     public ?string $tenantId = null;
 
     public function __construct(

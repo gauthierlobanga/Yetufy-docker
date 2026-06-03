@@ -73,7 +73,7 @@ export default function SaaSHero({ stats }: SaaSHeroProps) {
                         <div className="relative mx-auto max-w-md">
                             <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-amber-300/30 to-amber-500/10 blur-2xl" />
                             <img
-                                src="/storage/images/shopping-basket.jpg"
+                                src="/storage/images/shopping-cart.jpg"
                                 alt="Boutique en ligne"
                                 className="relative rounded-3xl shadow-2xl"
                             />

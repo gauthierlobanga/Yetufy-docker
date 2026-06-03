@@ -9,18 +9,14 @@ use App\Filament\Resources\CommentMentions\Pages\ListCommentMentions;
 use App\Filament\Resources\CommentMentions\Schemas\CommentMentionForm;
 use App\Filament\Resources\CommentMentions\Tables\CommentMentionsTable;
 use App\Models\CommentMention;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
 
 class CommentMentionResource extends Resource
 {
     protected static ?string $model = CommentMention::class;
-
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'comment_id';
 

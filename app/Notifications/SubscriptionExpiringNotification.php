@@ -2,18 +2,20 @@
 
 namespace App\Notifications;
 
+use App\Models\Tenant;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Carbon;
 
 class SubscriptionExpiringNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
     public function __construct(
-        private readonly \App\Models\Tenant $tenant,
-        private readonly ?\Illuminate\Support\Carbon $expiresAt = null,
+        private readonly Tenant $tenant,
+        private readonly ?Carbon $expiresAt = null,
     ) {}
 
     public function via(object $notifiable): array
@@ -40,7 +42,7 @@ class SubscriptionExpiringNotification extends Notification implements ShouldQue
             'tenant_id' => $this->tenant->id,
             'tenant_name' => $this->tenant->raison_sociale,
             'expires_at' => $this->expiresAt?->toIso8601String(),
-            'message' => "Votre subscription expire dans 7 jours.",
+            'message' => 'Votre subscription expire dans 7 jours.',
             'type' => 'subscription_expiring',
         ];
     }

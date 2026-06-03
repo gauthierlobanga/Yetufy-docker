@@ -70,7 +70,7 @@ class ThemeCustomizationService
     {
         $requiredKeys = [
             '--primary', '--secondary', '--accent', '--destructive',
-            '--background', '--foreground', '--card', '--border', '--input', '--ring'
+            '--background', '--foreground', '--card', '--border', '--input', '--ring',
         ];
 
         foreach ($requiredKeys as $key) {
@@ -256,17 +256,29 @@ class ThemeCustomizationService
         $r = $g = $b = 0;
 
         if ($hp >= 0 && $hp < 1) {
-            $r = $c; $g = $x; $b = 0;
+            $r = $c;
+            $g = $x;
+            $b = 0;
         } elseif ($hp >= 1 && $hp < 2) {
-            $r = $x; $g = $c; $b = 0;
+            $r = $x;
+            $g = $c;
+            $b = 0;
         } elseif ($hp >= 2 && $hp < 3) {
-            $r = 0; $g = $c; $b = $x;
+            $r = 0;
+            $g = $c;
+            $b = $x;
         } elseif ($hp >= 3 && $hp < 4) {
-            $r = 0; $g = $x; $b = $c;
+            $r = 0;
+            $g = $x;
+            $b = $c;
         } elseif ($hp >= 4 && $hp < 5) {
-            $r = $x; $g = 0; $b = $c;
+            $r = $x;
+            $g = 0;
+            $b = $c;
         } else {
-            $r = $c; $g = 0; $b = $x;
+            $r = $c;
+            $g = 0;
+            $b = $x;
         }
 
         $m = ($l / 100) - ($c / 2);

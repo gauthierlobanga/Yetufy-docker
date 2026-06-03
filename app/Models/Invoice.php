@@ -12,6 +12,7 @@ class Invoice extends Model
     use HasFactory, HasUuids;
 
     protected $keyType = 'string';
+
     public $incrementing = false;
 
     protected $fillable = [
@@ -96,6 +97,6 @@ class Invoice extends Model
      */
     public function isOverdue(): bool
     {
-        return $this->due_at && now() > $this->due_at && !$this->isPaid();
+        return $this->due_at && now() > $this->due_at && ! $this->isPaid();
     }
 }

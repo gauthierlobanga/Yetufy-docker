@@ -8,10 +8,8 @@ use App\Filament\Resources\Domains\Pages\EditDomain;
 use App\Filament\Resources\Domains\Pages\ListDomains;
 use App\Filament\Resources\Domains\Schemas\DomainForm;
 use App\Filament\Resources\Domains\Tables\DomainsTable;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -22,8 +20,6 @@ use UnitEnum;
 class DomainResource extends Resource
 {
     protected static ?string $model = Domain::class;
-
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedGlobeAlt;
 
     protected static string|UnitEnum|null $navigationGroup = NavigationGroup::Organisation;
 

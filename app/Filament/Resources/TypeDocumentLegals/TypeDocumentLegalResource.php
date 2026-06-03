@@ -9,18 +9,14 @@ use App\Filament\Resources\TypeDocumentLegals\Pages\ListTypeDocumentLegals;
 use App\Filament\Resources\TypeDocumentLegals\Schemas\TypeDocumentLegalForm;
 use App\Filament\Resources\TypeDocumentLegals\Tables\TypeDocumentLegalsTable;
 use App\Models\TypeDocumentLegal;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
 
 class TypeDocumentLegalResource extends Resource
 {
     protected static ?string $model = TypeDocumentLegal::class;
-
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'code';
 

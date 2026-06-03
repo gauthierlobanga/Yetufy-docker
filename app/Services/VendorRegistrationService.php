@@ -128,6 +128,7 @@ class VendorRegistrationService
             });
 
             $tenant->domains()->create([
+                'id' => (string) Str::orderedUuid(),
                 'domain' => str_replace('_', '-', $vendorRequest->shop_slug).'.localhost',
             ]);
 

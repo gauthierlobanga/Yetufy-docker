@@ -22,7 +22,6 @@ class AvisClientResource extends Resource
 {
     protected static ?string $model = AvisClient::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static string|UnitEnum|null $navigationGroup = NavigationGroup::Shop;
 
@@ -66,7 +65,7 @@ class AvisClientResource extends Resource
             ]);
     }
 
-     public static function getNavigationBadge(): ?string
+    public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
     }

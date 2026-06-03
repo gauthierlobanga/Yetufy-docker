@@ -4,21 +4,17 @@ namespace App\Filament\Pages;
 
 use App\Enums\NavigationGroup;
 use App\Settings\SettingApp;
-use BackedEnum;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\SettingsPage;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Illuminate\Support\Facades\Storage;
 use UnitEnum;
 
 class ManageAppSettings extends SettingsPage
 {
     protected static string $settings = SettingApp::class;
-
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
 
     protected static string|UnitEnum|null $navigationGroup = NavigationGroup::Profile;
 

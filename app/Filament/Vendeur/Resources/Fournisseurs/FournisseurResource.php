@@ -9,10 +9,8 @@ use App\Filament\Vendeur\Resources\Fournisseurs\Pages\ListFournisseurs;
 use App\Filament\Vendeur\Resources\Fournisseurs\Schemas\FournisseurForm;
 use App\Filament\Vendeur\Resources\Fournisseurs\Tables\FournisseursTable;
 use App\Models\Fournisseur;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -21,8 +19,6 @@ use UnitEnum;
 class FournisseurResource extends Resource
 {
     protected static ?string $model = Fournisseur::class;
-
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'nom';
 

@@ -108,15 +108,6 @@ class DomainsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                // SelectFilter::make('tenant_id')
-                //     ->label('Boutique')
-                //     ->relationship('tenant', 'raison_sociale')
-                //     ->searchable()
-                //     ->preload(),
-
-                TrashedFilter::make()
-                    ->searchable()
-                    ->preload(),
 
                 SelectFilter::make('type')
                     ->label('Type')

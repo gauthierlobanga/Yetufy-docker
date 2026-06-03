@@ -56,11 +56,10 @@ return new class extends Migration
             if (Schema::hasTable('users')) {
                 try {
                     $table->dropUnique('unique_provider_id');
-                } catch (\Throwable $e) {
+                } catch (Throwable $e) {
                     // Index n'existe pas, continuer
                 }
             }
         });
     }
 };
-

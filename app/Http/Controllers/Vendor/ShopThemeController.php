@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Vendor;
 use App\Enums\ThemePreset;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateShopThemeRequest;
+use App\Models\Tenant;
 use App\Services\ThemeCustomizationService;
 use App\Services\ThemeHistoryService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ShopThemeController extends Controller
 {
@@ -27,12 +27,12 @@ class ShopThemeController extends Controller
         }
 
         $tenant = tenant();
-        $theme = $tenant->theme() ?? \App\Models\Tenant::getThemeDefaults();
+        $theme = $tenant->theme() ?? Tenant::getThemeDefaults();
         $history = $this->historyService->getHistory($tenant->configuration ?? []);
 
         return response()->json([
             'current' => $theme,
-            'defaults' => \App\Models\Tenant::getThemeDefaults(),
+            'defaults' => Tenant::getThemeDefaults(),
             'presets' => ThemePreset::getPresets(),
             'history' => $history,
             'history_count' => count($history),
@@ -60,8 +60,8 @@ class ShopThemeController extends Controller
         $theme = [
             'preset' => $validated['preset'] ?? 'custom',
             'colors' => $validated['colors'],
-            'typography' => $validated['typography'] ?? \App\Models\Tenant::getThemeDefaults()['typography'],
-            'spacing' => $validated['spacing'] ?? \App\Models\Tenant::getThemeDefaults()['spacing'],
+            'typography' => $validated['typography'] ?? Tenant::getThemeDefaults()['typography'],
+            'spacing' => $validated['spacing'] ?? Tenant::getThemeDefaults()['spacing'],
             'dark_mode' => $validated['dark_mode'] ?? null,
             'metadata' => [
                 'updated_at' => now()->toIso8601String(),
@@ -71,7 +71,7 @@ class ShopThemeController extends Controller
 
         // Ajouter à l'historique avant la sauvegarde
         $config = $tenant->configuration ?? [];
-        $this->historyService->addToHistory($config, $tenant->theme() ?? \App\Models\Tenant::getThemeDefaults());
+        $this->historyService->addToHistory($config, $tenant->theme() ?? Tenant::getThemeDefaults());
         $tenant->configuration = $config;
 
         // Sauvegarder
@@ -104,7 +104,7 @@ class ShopThemeController extends Controller
 
             // Ajouter à l'historique
             $config = $tenant->configuration ?? [];
-            $this->historyService->addToHistory($config, $tenant->theme() ?? \App\Models\Tenant::getThemeDefaults());
+            $this->historyService->addToHistory($config, $tenant->theme() ?? Tenant::getThemeDefaults());
             $tenant->configuration = $config;
 
             $tenant->updateTheme($theme);
@@ -156,7 +156,7 @@ class ShopThemeController extends Controller
             return response()->json(['error' => 'Tenant non trouvé'], 404);
         }
 
-        $theme = $tenant->theme() ?? \App\Models\Tenant::getThemeDefaults();
+        $theme = $tenant->theme() ?? Tenant::getThemeDefaults();
         $json = $this->themeService->exportTheme($theme);
 
         return response()
@@ -164,7 +164,7 @@ class ShopThemeController extends Controller
                 function () use ($json) {
                     echo $json;
                 },
-                "theme-{$tenant->slug}-" . now()->format('Y-m-d') . '.json',
+                "theme-{$tenant->slug}-".now()->format('Y-m-d').'.json',
                 ['Content-Type' => 'application/json']
             );
     }
@@ -196,7 +196,7 @@ class ShopThemeController extends Controller
 
             // Ajouter à l'historique
             $config = $tenant->configuration ?? [];
-            $this->historyService->addToHistory($config, $tenant->theme() ?? \App\Models\Tenant::getThemeDefaults());
+            $this->historyService->addToHistory($config, $tenant->theme() ?? Tenant::getThemeDefaults());
             $tenant->configuration = $config;
 
             $tenant->updateTheme($theme);
@@ -207,7 +207,7 @@ class ShopThemeController extends Controller
                 'message' => 'Thème importé avec succès',
             ]);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Erreur lors de l\'import: ' . $e->getMessage()], 422);
+            return response()->json(['error' => 'Erreur lors de l\'import: '.$e->getMessage()], 422);
         }
     }
 
@@ -235,7 +235,7 @@ class ShopThemeController extends Controller
 
         $theme2 = $request->input('version2')
             ? $this->historyService->getVersion($config, $request->input('version2'))
-            : \App\Models\Tenant::getThemeDefaults();
+            : Tenant::getThemeDefaults();
 
         if (! $theme1 || ! $theme2) {
             return response()->json(['error' => 'Thèmes non trouvés'], 404);
@@ -283,7 +283,7 @@ class ShopThemeController extends Controller
 
         // Ajouter à l'historique
         $config = $tenant->configuration ?? [];
-        $this->historyService->addToHistory($config, $tenant->theme() ?? \App\Models\Tenant::getThemeDefaults());
+        $this->historyService->addToHistory($config, $tenant->theme() ?? Tenant::getThemeDefaults());
         $tenant->configuration = $config;
 
         $tenant->resetTheme();

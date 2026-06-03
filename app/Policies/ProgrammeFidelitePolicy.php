@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
-use Illuminate\Foundation\Auth\User as AuthUser;
 use App\Models\ProgrammeFidelite;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Foundation\Auth\User as AuthUser;
 
 class ProgrammeFidelitePolicy
 {
     use HandlesAuthorization;
-    
+
     public function viewAny(AuthUser $authUser): bool
     {
         return $authUser->can('ViewAny ProgrammeFidelite');
@@ -71,5 +71,4 @@ class ProgrammeFidelitePolicy
     {
         return $authUser->can('Reorder ProgrammeFidelite');
     }
-
 }

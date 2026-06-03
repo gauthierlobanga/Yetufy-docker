@@ -15,8 +15,11 @@ class SubscriptionSystemTest extends TestCase
     use RefreshDatabase;
 
     protected User $user;
+
     protected Plan $freePlan;
+
     protected Plan $paidPlan;
+
     protected SubscriptionService $subscriptionService;
 
     protected function setUp(): void

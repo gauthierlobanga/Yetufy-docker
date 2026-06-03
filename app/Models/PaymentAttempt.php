@@ -12,6 +12,7 @@ class PaymentAttempt extends Model
     use HasFactory, HasUuids;
 
     protected $keyType = 'string';
+
     public $incrementing = false;
 
     protected $fillable = [
@@ -65,7 +66,7 @@ class PaymentAttempt extends Model
      */
     public function getFormattedError(): string
     {
-        if (!$this->isFailed()) {
+        if (! $this->isFailed()) {
             return '';
         }
 
@@ -93,7 +94,7 @@ class PaymentAttempt extends Model
     /**
      * Marquer comme échoué
      */
-    public function markAsFailed(string $reason, string $code = null): self
+    public function markAsFailed(string $reason, ?string $code = null): self
     {
         $this->update([
             'status' => 'failed',

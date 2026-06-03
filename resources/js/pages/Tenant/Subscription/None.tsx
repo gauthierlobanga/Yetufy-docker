@@ -6,7 +6,7 @@ export default function NoSubscription() {
         <>
             <Head title="Pas d'abonnement" />
 
-            <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 p-4">
+            <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-blue-50 to-blue-100 p-4">
                 <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg">
                     <div className="flex justify-center">
                         <div className="rounded-full bg-blue-100 p-3">

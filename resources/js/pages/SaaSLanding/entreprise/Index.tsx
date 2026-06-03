@@ -118,7 +118,7 @@ export default function SaaSLanding(_props: Props) {
                     </FadeInSection>
                     <div className="mt-12 lg:mt-0 lg:w-1/2">
                         <motion.img
-                            src="storage/images/shopping-basket.jpg"
+                            src="storage/images/shopping-cart.jpg"
                             alt="Illustration"
                             className="mx-auto w-full max-w-md"
                             initial={{ opacity: 0, scale: 0.95 }}

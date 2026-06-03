@@ -251,7 +251,7 @@ export default function HeroSection({ categories }: HeroSectionProps) {
                                 <div className="absolute inset-0 scale-105 rounded-[2.5rem] bg-linear-to-br from-emerald-500/20 via-cyan-500/10 to-violet-500/10 blur-3xl" />
                                 <div className="relative overflow-hidden rounded-[2.5rem] border border-white/30 bg-white/10 shadow-2xl shadow-slate-300/20 backdrop-blur-2xl dark:border-white/10 dark:shadow-black/30">
                                     <motion.img
-                                        src="/storage/images/shopping-basket.jpg"
+                                        src="/storage/images/shopping-cart.jpg"
                                         alt="Shopping premium"
                                         className="aspect-4/5 w-full object-cover"
                                         whileHover={{ scale: 1.04 }}

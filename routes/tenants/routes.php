@@ -32,6 +32,7 @@ use App\Http\Controllers\Shop\WishlistController;
 use App\Http\Controllers\Vendor\AnalyticsController;
 use App\Http\Controllers\Vendor\Settings\ParametresController;
 use App\Http\Controllers\Vendor\Settings\ParametresSecurityController;
+use App\Http\Controllers\Vendor\ShopThemeController;
 use App\Http\Controllers\Vendor\SubscriptionController;
 use App\Http\Controllers\Vendor\TenantAiController;
 use App\Http\Controllers\Vendor\TenantDashboardNotificationController;
@@ -41,13 +42,11 @@ use App\Http\Controllers\Vendor\TenantProductController;
 use App\Http\Controllers\Vendor\VendorDashboardController;
 use App\Http\Controllers\Vendor\VendorSettingsController;
 use App\Http\Controllers\Vendor\VendorStatisticsController;
-use App\Http\Controllers\Vendor\ShopThemeController;
 use App\Http\Controllers\Vendor\VisitorAnalyticsController;
 use App\Http\Controllers\Vendor\VisitorStatsController;
 use App\Models\Visit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
@@ -78,8 +77,6 @@ Route::middleware([
 
     Route::get('/tenant-sso-login', [TenantSsoLoginController::class, '__invoke'])
         ->name('tenant.sso.login');
-
-
 
     /*
       |--------------------------------------------------------------------------
@@ -119,7 +116,7 @@ Route::middleware([
       */
     Route::middleware(['auth', 'verified'])->group(function () {
 
-        Route::prefix('admin')->group(function () {
+        Route::prefix('admin/central')->group(function () {
             Route::get('/dashboard', [DashboardController::class, 'adminDashboardIndex'])->name('dashboard');
 
             Route::prefix('subscriptions')->name('admin.subscriptions.')->group(function () {
@@ -142,7 +139,7 @@ Route::middleware([
         Route::get('/vendor/dashboard', [VendorDashboardController::class, 'index'])
             ->name('vendor.dashboard');
 
-        Route::prefix('subscription')->name('subscription.')->group(function () {
+        Route::prefix('subscription')->name('tenant.subscription.')->group(function () {
             Route::get('/', [SubscriptionController::class, 'show'])->name('show');
             Route::post('/upgrade', [SubscriptionController::class, 'upgrade'])->name('upgrade');
             Route::post('/downgrade', [SubscriptionController::class, 'downgrade'])->name('downgrade');

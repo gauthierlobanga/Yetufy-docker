@@ -136,7 +136,7 @@ class CheckoutController extends Controller
         foreach ($cart->items as $item) {
             if (! $item->produit->hasSufficientStock($item->quantite)) {
                 return back()->withErrors([
-                    'stock' => "Stock insuffisant pour {$item->produit->nom}. " .
+                    'stock' => "Stock insuffisant pour {$item->produit->nom}. ".
                         "Disponible: {$item->produit->stock_disponible}, Demandé: {$item->quantite}",
                 ]);
             }

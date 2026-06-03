@@ -29,7 +29,7 @@ class SubscriptionCanceledNotification extends Notification implements ShouldQue
             ->line("Votre subscription pour **{$this->tenant->raison_sociale}** a été annulée.")
             ->line("Vous avez accès à votre boutique jusqu'au {$this->graceUntil?->format('d/m/Y')}.")
             ->line("Après cette date, votre accès sera complètement bloqué.")
-            ->line("Si vous souhaitez réactiver votre abonnement, veuillez vous reconnecter.')
+            ->line("Si vous souhaitez réactiver votre abonnement, veuillez vous reconnecter.")
             ->action('Gérer mon abonnement', route('tenant.subscription.show'))
             ->line('Merci pour votre compréhension.');
     }

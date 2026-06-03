@@ -20,7 +20,6 @@ class TransactionFideliteResource extends Resource
 {
     protected static ?string $model = TransactionFidelite::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'compte_fidelite_id';
 

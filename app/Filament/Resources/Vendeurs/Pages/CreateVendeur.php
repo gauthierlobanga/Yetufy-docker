@@ -22,13 +22,13 @@ class CreateVendeur extends CreateRecord
 
         // Activer le tenant et lier l'utilisateur créateur
         $tenant->update([
-            'statut'          => Tenant::STATUT_ACTIF,
-            'is_active'       => true,
-            'user_id'         => Auth::id(),
+            'statut' => Tenant::STATUT_ACTIF,
+            'is_active' => true,
+            'user_id' => Auth::id(),
         ]);
 
         // Domaine (fallback si champ vide)
-        $domain = $this->data['domain'] ?? str_replace('_', '-', $tenant->slug) . '.localhost';
+        $domain = $this->data['domain'] ?? str_replace('_', '-', $tenant->slug).'.localhost';
         $tenant->domains()->create([
             'domain' => $domain,
         ]);
@@ -50,14 +50,14 @@ class CreateVendeur extends CreateRecord
 
                 // Tracer la création
                 VendorRequest::create([
-                    'user_id'       => Auth::id(),
-                    'plan_id'       => $freePlan->id,
-                    'shop_name'     => $tenant->raison_sociale,
-                    'shop_slug'     => $tenant->slug,
+                    'user_id' => Auth::id(),
+                    'plan_id' => $freePlan->id,
+                    'shop_name' => $tenant->raison_sociale,
+                    'shop_slug' => $tenant->slug,
                     'contact_email' => $tenant->email,
-                    'status'        => VendorRequest::STATUS_APPROVED,
-                    'approved_at'   => now(),
-                    'tenant_id'     => $tenant->id,
+                    'status' => VendorRequest::STATUS_APPROVED,
+                    'approved_at' => now(),
+                    'tenant_id' => $tenant->id,
                 ]);
             }
         }
@@ -68,7 +68,7 @@ class CreateVendeur extends CreateRecord
         } catch (\Throwable $e) {
             Log::error('Échec du provisionnement de la base du tenant', [
                 'tenant_id' => $tenant->id,
-                'error'     => $e->getMessage(),
+                'error' => $e->getMessage(),
             ]);
             // On continue malgré l'erreur pour au moins attacher l'utilisateur
         }
@@ -82,18 +82,18 @@ class CreateVendeur extends CreateRecord
             User::updateOrCreate(
                 ['id' => Auth::id()],
                 [
-                    'name'              => Auth::user()->name,
-                    'email'             => Auth::user()->email,
-                    'password'          => Auth::user()->password,
+                    'name' => Auth::user()->name,
+                    'email' => Auth::user()->email,
+                    'password' => Auth::user()->password,
                     'email_verified_at' => Auth::user()->email_verified_at,
-                    'is_active'         => true,
+                    'is_active' => true,
                 ]
             );
         } catch (\Throwable $e) {
             Log::error('Impossible de synchroniser l’utilisateur dans le tenant', [
                 'tenant_id' => $tenant->id,
-                'user_id'   => Auth::id(),
-                'error'     => $e->getMessage(),
+                'user_id' => Auth::id(),
+                'error' => $e->getMessage(),
             ]);
         }
     }

@@ -1,16 +1,17 @@
 <?php
 
-use App\Models\User;
-use App\Models\Tenant;
-use App\Models\Client;
 use App\Models\Adresse;
-use App\Models\Panier;
-use App\Models\Commande;
-use App\Models\AvisClient;
 use App\Models\AuditLog;
+use App\Models\AvisClient;
+use App\Models\Client;
+use App\Models\Commande;
+use App\Models\Panier;
 use App\Models\Post;
+use App\Models\Tenant;
+use App\Models\User;
 use Filament\Panel;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Carbon;
+
 use function Pest\Laravel\assertModelExists;
 use function Pest\Laravel\assertModelMissing;
 use function Pest\Laravel\assertSoftDeleted;
@@ -32,7 +33,7 @@ it('can create a user', function () {
 
 it('uses UUID as primary key', function () {
     $user = User::factory()->create();
-    
+
     expect($user->id)->toBeString();
     expect($user->incrementing)->toBeFalse();
 });
@@ -73,7 +74,7 @@ it('casts attributes correctly', function () {
     expect($user->is_active)->toBeTrue();
     expect($user->email_verifie)->toBeBool();
     expect($user->preferences)->toBeArray();
-    expect($user->email_verified_at)->toBeInstanceOf(\Illuminate\Support\Carbon::class);
+    expect($user->email_verified_at)->toBeInstanceOf(Carbon::class);
 });
 
 it('has many tenants', function () {

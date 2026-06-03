@@ -24,7 +24,7 @@ class SubscriptionController extends Controller
         $tenant = $request->tenant();
         $subscription = $tenant->subscription;
 
-        if (!$subscription) {
+        if (! $subscription) {
             return Inertia::render('Tenant/Subscription/NoSubscription');
         }
 
@@ -101,7 +101,7 @@ class SubscriptionController extends Controller
         $tenant = $request->tenant();
         $subscription = $tenant->subscription;
 
-        if (!$subscription) {
+        if (! $subscription) {
             return back()->with('error', 'Aucune subscription trouvée.');
         }
 
@@ -145,7 +145,7 @@ class SubscriptionController extends Controller
         $tenant = $request->tenant();
         $subscription = $tenant->subscription;
 
-        if (!$subscription) {
+        if (! $subscription) {
             return back()->with('error', 'Aucune subscription trouvée.');
         }
 
@@ -189,7 +189,7 @@ class SubscriptionController extends Controller
         $tenant = $request->tenant();
         $subscription = $tenant->subscription;
 
-        if (!$subscription) {
+        if (! $subscription) {
             return back()->with('error', 'Aucune subscription trouvée.');
         }
 
@@ -223,7 +223,7 @@ class SubscriptionController extends Controller
         $tenant = $request->tenant();
         $subscription = $tenant->subscription;
 
-        if (!$subscription) {
+        if (! $subscription) {
             return back()->with('error', 'Aucune subscription trouvée.');
         }
 
@@ -253,7 +253,7 @@ class SubscriptionController extends Controller
         $tenant = $request->tenant();
         $subscription = $tenant->subscription;
 
-        if (!$subscription) {
+        if (! $subscription) {
             return back()->with('error', 'Aucune subscription trouvée.');
         }
 
@@ -283,7 +283,7 @@ class SubscriptionController extends Controller
         $tenant = $request->tenant();
         $subscription = $tenant->subscription;
 
-        if (!$subscription) {
+        if (! $subscription) {
             return back()->with('error', 'Aucune subscription trouvée.');
         }
 

@@ -10,10 +10,8 @@ use App\Filament\Resources\Vendeurs\Pages\ListVendeurs;
 use App\Filament\Resources\Vendeurs\Schemas\VendeurForm;
 use App\Filament\Resources\Vendeurs\Tables\VendeursTable;
 use App\Models\Tenant;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -26,8 +24,6 @@ class VendeurResource extends Resource
     protected static ?string $model = Tenant::class;
 
     protected static string|UnitEnum|null $navigationGroup = NavigationGroup::Organisation;
-
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'name';
 

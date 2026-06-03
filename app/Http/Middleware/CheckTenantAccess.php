@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Tenant;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,13 +17,13 @@ class CheckTenantAccess
     {
         $tenant = tenant();
 
-        if (!$tenant) {
+        if (! $tenant) {
             return $next($request);
         }
 
         $subscription = $tenant->subscription;
 
-        if (!$subscription) {
+        if (! $subscription) {
             return redirect()->route('tenant.subscription.none')
                 ->with('error', 'Aucune subscription trouvée.');
         }
@@ -35,7 +36,7 @@ class CheckTenantAccess
         }
 
         // If tenant is marked as inactive/suspended
-        if ($tenant->statut !== \App\Models\Tenant::STATUT_ACTIF) {
+        if ($tenant->statut !== Tenant::STATUT_ACTIF) {
             return response()->view('errors.access-denied', [
                 'message' => 'Votre boutique n\'est pas active.',
             ], 403);

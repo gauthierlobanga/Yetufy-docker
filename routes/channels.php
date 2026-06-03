@@ -95,4 +95,3 @@ Broadcast::channel('product.{productId}', function ($user) {
 Broadcast::channel('notifications.global', function ($user) {
     return true;
 });
-

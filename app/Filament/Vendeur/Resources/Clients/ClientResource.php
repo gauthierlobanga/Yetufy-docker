@@ -9,10 +9,8 @@ use App\Filament\Vendeur\Resources\Clients\Pages\ListClients;
 use App\Filament\Vendeur\Resources\Clients\Schemas\ClientForm;
 use App\Filament\Vendeur\Resources\Clients\Tables\ClientsTable;
 use App\Models\Client;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -21,8 +19,6 @@ use UnitEnum;
 class ClientResource extends Resource
 {
     protected static ?string $model = Client::class;
-
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static string|UnitEnum|null $navigationGroup = NavigationGroup::Profile;
 

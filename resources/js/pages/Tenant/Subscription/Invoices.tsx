@@ -1,5 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
-import { Download, FileText, ChevronRight } from 'lucide-react';
+import { Download, FileText } from 'lucide-react';
 
 interface Invoice {
     id: string;
@@ -22,7 +22,10 @@ type Props = {
 };
 
 function formatDate(date: string | null): string {
-    if (!date) return '—';
+    if (!date) {
+return '—';
+}
+
     return new Date(date).toLocaleDateString('fr-FR', {
         year: 'numeric',
         month: 'long',

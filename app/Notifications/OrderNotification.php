@@ -16,6 +16,7 @@ class OrderNotification extends Notification
     use Queueable;
 
     public ?string $userType = null;
+
     public ?string $tenantId = null;
 
     public function __construct(
@@ -132,7 +133,7 @@ class OrderNotification extends Notification
 
     private function getOrderUrl($order): string
     {
-        if (!$order) {
+        if (! $order) {
             return config('app.url');
         }
 

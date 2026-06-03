@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Plan;
 use App\Models\User;
 use App\Models\VendorRequest;
+use App\Settings\SettingApp;
 use Illuminate\Support\Facades\Log;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
@@ -22,6 +23,8 @@ class PaymentService
      */
     public function createCheckoutSession(User $user, Plan $plan, VendorRequest $vendorRequest): Session
     {
+        $logo_app = app(SettingApp::class);
+
         return Session::create([
             'payment_method_types' => ['card', 'mobile_money'],
             'line_items' => [[
@@ -30,7 +33,7 @@ class PaymentService
                     'product_data' => [
                         'name' => 'Plan '.$plan->name,
                         'description' => $plan->description,
-                        'images' => [asset('images/logo.png')],
+                        'images' => $logo_app->logoUrl(),
                     ],
                     'unit_amount' => (int) ($plan->price * 100), // En centimes
                     'recurring' => [
@@ -123,11 +126,12 @@ class PaymentService
     {
         $vendorRequest = VendorRequest::find($session->metadata->vendor_request_id);
 
-        if (!$vendorRequest) {
+        if (! $vendorRequest) {
             Log::error('VendorRequest not found for checkout session', [
                 'session_id' => $session->id,
                 'vendor_request_id' => $session->metadata->vendor_request_id,
             ]);
+
             return ['status' => 'error', 'message' => 'VendorRequest not found'];
         }
 

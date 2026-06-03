@@ -42,7 +42,7 @@ class SubscriptionController extends Controller
         if ($request->search) {
             $query->whereHas('tenant', function ($q) use ($request) {
                 $q->where('raison_sociale', 'like', "%{$request->search}%")
-                  ->orWhere('slug', 'like', "%{$request->search}%");
+                    ->orWhere('slug', 'like', "%{$request->search}%");
             });
         }
 

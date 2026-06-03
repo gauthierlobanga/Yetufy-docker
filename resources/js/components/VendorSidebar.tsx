@@ -217,15 +217,13 @@ export function VendorSidebar({ tenant }: { tenant: Tenant }) {
                     <div className="relative">
                         {tenant.logo_url ? (
                             <div className="relative">
-                                <div className="absolute inset-0 rounded-2xl bg-emerald-500/30 blur-md transition-opacity group-hover:opacity-100" />
+                                {/* <div className="absolute inset-0 rounded-2xl" /> */}
                                 <img
                                     src={tenant.logo_url}
                                     alt={tenant.raison_sociale}
                                     className={cn(
                                         'relative h-11 w-11 rounded-2xl object-cover',
-                                        'border border-white/80 dark:border-slate-700/70',
-                                        'shadow-[0_8px_24px_rgba(16,185,129,0.15)]',
-                                        'transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_28px_rgba(16,185,129,0.25)]',
+                                        'transition-all duration-300 ',
                                     )}
                                 />
                             </div>
@@ -239,7 +237,7 @@ export function VendorSidebar({ tenant }: { tenant: Tenant }) {
                             </div>
                         )}
                         {/* Indicateur de statut (en ligne / hors ligne) - optionnel */}
-                        <div className="absolute -right-0.5 -bottom-0.5 h-3 w-3 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-slate-900" />
+                        {/* <div className="absolute -right-0.5 -bottom-0.5 h-3 w-3 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-slate-900" /> */}
                     </div>
 
                     {/* Informations texte */}

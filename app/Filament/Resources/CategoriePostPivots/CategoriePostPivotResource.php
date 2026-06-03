@@ -9,19 +9,13 @@ use App\Filament\Resources\CategoriePostPivots\Pages\ListCategoriePostPivots;
 use App\Filament\Resources\CategoriePostPivots\Schemas\CategoriePostPivotForm;
 use App\Filament\Resources\CategoriePostPivots\Tables\CategoriePostPivotsTable;
 use App\Models\PostCategoryPivot;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
 class CategoriePostPivotResource extends Resource
 {
     protected static ?string $model = PostCategoryPivot::class;
-
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTag;
-
-    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::Tag;
 
     protected static ?string $recordTitleAttribute = 'est_principale';
 

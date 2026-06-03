@@ -9,18 +9,14 @@ use App\Filament\Resources\TenantDocumentLegals\Pages\ListTenantDocumentLegals;
 use App\Filament\Resources\TenantDocumentLegals\Schemas\TenantDocumentLegalForm;
 use App\Filament\Resources\TenantDocumentLegals\Tables\TenantDocumentLegalsTable;
 use App\Models\TenantDocumentLegal;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
 
 class TenantDocumentLegalResource extends Resource
 {
     protected static ?string $model = TenantDocumentLegal::class;
-
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'numero_document';
 

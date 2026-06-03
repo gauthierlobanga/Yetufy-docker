@@ -22,7 +22,6 @@ class DeviseResource extends Resource
 {
     protected static ?string $model = Devise::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static string|UnitEnum|null $navigationGroup = NavigationGroup::Settings;
 
