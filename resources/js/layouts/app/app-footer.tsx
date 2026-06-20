@@ -1,17 +1,13 @@
 // resources/js/layouts/FooterSection.tsx
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { motion, useInView } from 'framer-motion';
 import {
     ChevronRight,
     CreditCard,
     Globe,
-    RefreshCw,
-    ShieldCheck,
-    Truck,
     ArrowUpRight,
     Building2,
     HeartHandshake,
-    Headphones,
 } from 'lucide-react';
 import { useRef } from 'react';
 
@@ -26,37 +22,6 @@ import AppLogo from '@/components/app-logo';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
-
-const socialLinks = [
-    { name: 'Facebook', href: '#', icon: FaFacebook },
-    { name: 'Instagram', href: '#', icon: FaInstagram },
-    { name: 'X', href: '#', icon: FaTwitter },
-    { name: 'LinkedIn', href: '#', icon: FaLinkedin },
-    { name: 'YouTube', href: '#', icon: FaYoutube },
-];
-
-const guarantees = [
-    {
-        icon: ShieldCheck,
-        title: 'Paiement sécurisé',
-        desc: 'Transactions chiffrées SSL/TLS',
-    },
-    {
-        icon: Truck,
-        title: 'Livraison rapide',
-        desc: 'Expédition fiable partout',
-    },
-    {
-        icon: RefreshCw,
-        title: 'Retours simplifiés',
-        desc: '30 jours pour changer d’avis',
-    },
-    {
-        icon: Headphones,
-        title: 'Support réactif',
-        desc: 'Assistance disponible 7j/7',
-    },
-];
 
 const footerSections = [
     {
@@ -128,6 +93,27 @@ export default function FooterSection() {
     const isInView = useInView(ref, { once: true, margin: '-80px' });
     const currentYear = new Date().getFullYear();
 
+        const { socialLinks: rawSocialLinks } = usePage().props as any;
+
+        const socialLinks = [
+            { name: 'Facebook', href: rawSocialLinks?.facebook, icon: FaFacebook },
+            {
+                name: 'Instagram',
+                href: rawSocialLinks?.instagram,
+                icon: FaInstagram,
+            },
+            { name: 'X', href: rawSocialLinks?.x, icon: FaTwitter },
+            { name: 'LinkedIn', href: rawSocialLinks?.linkedin, icon: FaLinkedin },
+            { name: 'YouTube', href: rawSocialLinks?.youtube, icon: FaYoutube },
+        ].filter((link) => link.href); // n'affiche que ceux qui ont un lien
+
+        // Récupération des données de contact depuis le partage global (si configuré dans HandleInertiaRequests)
+        const { contactInfo, name } = usePage().props as any;
+
+        const phone = contactInfo?.phone ?? '+243 123 456 789';
+        const email = contactInfo?.email ?? 'contact@immo-rdc.cd';
+        const address = contactInfo?.address ?? '123 Avenue de l’Immobilier, Kinshasa';
+
     return (
         <footer
             ref={ref}
@@ -140,7 +126,7 @@ export default function FooterSection() {
             </div>
 
             {/* Guarantees – pleine largeur, contenu centré */}
-            <motion.div
+            {/* <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 animate={isInView ? 'visible' : 'hidden'}
@@ -179,9 +165,9 @@ export default function FooterSection() {
                         </motion.div>
                     ))}
                 </div>
-            </motion.div>
+            </motion.div> */}
 
-            <Separator className="bg-slate-200/70 dark:bg-slate-800/70" />
+            {/* <Separator className="bg-slate-200/70 dark:bg-slate-800/70" /> */}
 
             {/* Main Footer – pleine largeur, contenu centré */}
             <motion.div

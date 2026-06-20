@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Plan;
-use App\Models\Subscription;
 use App\Services\SubscriptionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -25,7 +24,7 @@ class SubscriptionController extends Controller
         $subscription = $tenant->subscription;
 
         if (! $subscription) {
-            return Inertia::render('Tenant/Subscription/NoSubscription');
+            return Inertia::render('Tenant/Subscription/None');
         }
 
         $plan = $subscription->plan;

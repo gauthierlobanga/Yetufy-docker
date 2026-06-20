@@ -122,6 +122,20 @@ class HandleInertiaRequests extends Middleware
 
             $sharedData['name'] = $appSettings->name;
             $sharedData['app_logo'] = $appSettings->logoUrl();
+            $sharedData['contactInfo'] = [
+                'address' => $appSettings->address,
+                'phone' => $appSettings->phone,
+                'email' => $appSettings->email,
+            ];
+
+            $sharedData['socialLinks'] = [
+                'facebook' => $appSettings->facebook_url,
+                'instagram' => $appSettings->instagram_url,
+                'x' => $appSettings->x_url,
+                'linkedin' => $appSettings->linkedin_url,
+                'youtube' => $appSettings->youtube_url,
+            ];
+
         } else {
             $sharedData['name'] = config('app.name');
         }

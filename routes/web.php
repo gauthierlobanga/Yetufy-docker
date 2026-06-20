@@ -152,7 +152,7 @@ Route::get('/plans', [VendorRegistrationController::class, 'vendeurIndex'])
     ->middleware('auth')
     ->name('plan.index');
 
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('admin/central')->group(function () {
     Route::get('/stats/visitors', [VisitorStatsController::class, 'index'])->name('admin.stats.visitors');
 });
 
@@ -168,6 +168,3 @@ Route::post('/track-duration', function (Request $request) {
     return response()->noContent();
 })->name('track.duration')->middleware('web');
 
-// Route::get('/storage/{path?}', [PublicStorageController::class, 'show'])
-//     ->where('path', '.*')          // autorise les sous-dossiers
-//     ->name('public.storage');

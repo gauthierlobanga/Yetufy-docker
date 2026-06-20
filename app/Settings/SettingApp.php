@@ -12,6 +12,23 @@ class SettingApp extends Settings
 
     public ?string $logo_url = null;
 
+    public string $address = '123 Avenue de l’Immobilier, Kinshasa';
+
+    public string $phone = '+243 123 456 789';
+
+    public string $email = 'contact@immo-rdc.cd';
+
+    // Réseaux sociaux
+    public ?string $facebook_url = null;
+
+    public ?string $instagram_url = null;
+
+    public ?string $x_url = null;
+
+    public ?string $linkedin_url = null;
+
+    public ?string $youtube_url = null;
+
     public function logoUrl(): ?string
     {
         return static::publicLogoUrl($this->logo_url);
